@@ -8,6 +8,10 @@ This is only written for fun and is not recommended to be used without prior tes
 ## SIMD
 By default we are targeting SSE3 or higher on Intel, although it probably will work on AMD too. 
 
+## Compiling and Using
+After you have cloned the repo, do a make in the root directory of the repo. And you will have two files to use, libfecc.so is to be used as a shared object library and main will be the test executable. <BR>
+Please read [forwardecc.c](./forwardecc.c) for example usage of the library. 
+
 ## References
 All of the following references are good reads: <BR>
 Wiki at https://en.wikiversity.org/wiki/Reed%E2%80%93Solomon_codes_for_coders, and https://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction<BR>
