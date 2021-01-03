@@ -6,19 +6,27 @@ CC=gcc # C language compiler
 # CFLAGS = -O0 -ggdb
 CFLAGS = -Ofast -flto
 
-HEADERFILES=$(shell find . -maxdepth 1 -type f -name "*.h")
-SOURCEFILES=$(shell find . -maxdepth 1 -type f -name "*.c")
+HEADERFILES=finite-fields.h rs.h polynomials.h
+SOURCEFILES=rs.c finite-fields.c polynomials.c
 
-OBJFILES=${SOURCEFILES:c=o}
+EXEHEADERFILE=forwardecc.h 
+EXEMAINFILE=forwardecc.c
+
+LIBOBJFILES=${SOURCEFILES:c=o}
+EXEOBJFILES=${EXEMAINFILE:c=o}
 EXECUTABLE=main
+LIBRARYNAME=libfecc.so
 
-all: run-unit-tests build-file
+all: run-unit-tests build-library build-exe 
 
-$(OBJFILES): %.o: %.c $(HEADERFILES)
-	$(CC) -c $< -o $@  $(CFLAGS) -msse4
+$(LIBOBJFILES): %.o: %.c $(HEADERFILES)
+	$(CC) -c -fPIC $< -o $@  $(CFLAGS) -msse4
 
-build-file: $(OBJFILES)
-	gcc $(CFLAGS) -o $(EXECUTABLE) $(OBJFILES)
+build-exe: $(OBJFILES) build-library
+	gcc $(CFLAGS) -o $(EXECUTABLE) $(EXEOBJFILES) -Wl,-R -Wl,./ $(LIBRARYNAME)
+	
+build-library: $(OBJFILES)
+	gcc $(CFLAGS) -shared -o $(LIBRARYNAME) $(LIBOBJFILES)
 
 run-unit-tests:
 	@echo "Starting unit tests before performing build..."
