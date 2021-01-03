@@ -70,7 +70,7 @@ main ()
               encode.message_out_buffer.memory,
               encode.field_message_out_length);
 
-            size_t iteration = 20000;
+            size_t iteration = 2000;
             clock_t clock_time1 = clock ();
 
             for (int i = 0; i < iteration; i++)

@@ -6,8 +6,8 @@ CC=gcc # C language compiler
 # CFLAGS = -O0 -ggdb
 CFLAGS = -Ofast -flto
 
-HEADERFILES=$(shell find . -type f -name "*.h")
-SOURCEFILES=$(shell find . -type f -name "*.c")
+HEADERFILES=$(shell find . -maxdepth 1 -type f -name "*.h")
+SOURCEFILES=$(shell find . -maxdepth 1 -type f -name "*.c")
 
 OBJFILES=${SOURCEFILES:c=o}
 EXECUTABLE=main
@@ -22,8 +22,8 @@ build-file: $(OBJFILES)
 
 run-unit-tests:
 	@echo "Starting unit tests before performing build..."
-	cd ../unit-testing && make
-	../unit-testing/main
+	cd ./test && make
+	./test/main
 
 clean:
 	rm forwardecc.o finite-fields.o rs.o polynomials.o
