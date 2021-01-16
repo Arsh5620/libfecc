@@ -2,6 +2,7 @@
 #include "../rs.h"
 #include "../finite-fields.h"
 #include "../polynomials.h"
+#include <stdlib.h>
 
 int
 test_fecc ()

@@ -4,7 +4,7 @@ CC=gcc # C language compiler
 # profile or debugging flags no longer required
 # will be using vtune for profiling on Intel
 # CFLAGS = -O0 -ggdb
-CFLAGS = -Ofast -flto
+CFLAGS = -O3 -flto
 
 HEADERFILES=finite-fields.h rs.h polynomials.h
 SOURCEFILES=rs.c finite-fields.c polynomials.c

@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdlib.h>
 
 #define BEGIN_TEST                                                                                 \
     struct                                                                                         \
